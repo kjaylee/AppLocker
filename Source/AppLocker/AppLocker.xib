@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -26,7 +26,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O4o-Ks-4Ii">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="222.5"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hVx-18-l1J" customClass="ImageView" customModule="PasscodeLock" customModuleProvider="target">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hVx-18-l1J" customClass="ImageView" customModule="PasscodeLock" customModuleProvider="target">
                                 <rect key="frame" x="144" y="43.5" width="88" height="88.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="hVx-18-l1J" secondAttribute="height" multiplier="1:1" id="wcK-td-OD3"/>
@@ -42,45 +42,67 @@
                                 <rect key="frame" x="8" y="199" width="359" height="27.5"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y48-OI-bV6" userLabel="first" customClass="Indicator" customModule="PasscodeLock" customModuleProvider="target">
-                                        <rect key="frame" x="121" y="7" width="14" height="14"/>
+                                        <rect key="frame" x="87" y="7" width="14" height="14"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="y48-OI-bV6" secondAttribute="height" multiplier="1:1" id="cHE-Dp-W1T"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EvL-fK-aNd" userLabel="second" customClass="Indicator" customModule="PasscodeLock" customModuleProvider="target">
-                                        <rect key="frame" x="155.5" y="7" width="14" height="14"/>
+                                        <rect key="frame" x="121.5" y="7" width="14" height="14"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="EvL-fK-aNd" secondAttribute="height" multiplier="1:1" id="mWJ-SV-lPQ"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ty0-rX-vyo" userLabel="third" customClass="Indicator" customModule="PasscodeLock" customModuleProvider="target">
-                                        <rect key="frame" x="189.5" y="7" width="14" height="14"/>
+                                        <rect key="frame" x="155.5" y="7" width="14" height="14"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="ty0-rX-vyo" secondAttribute="height" multiplier="1:1" id="Bb2-Nk-aDy"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nQv-Y6-U7g" userLabel="four" customClass="Indicator" customModule="PasscodeLock" customModuleProvider="target">
-                                        <rect key="frame" x="223" y="7" width="14" height="14"/>
+                                        <rect key="frame" x="189" y="7" width="14" height="14"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="nQv-Y6-U7g" secondAttribute="height" multiplier="1:1" id="XIl-Rp-NHx"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MMc-7j-HZg" userLabel="five" customClass="Indicator" customModule="PasscodeLock" customModuleProvider="target">
+                                        <rect key="frame" x="223" y="6" width="14" height="14"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="MMc-7j-HZg" secondAttribute="height" multiplier="1:1" id="93m-1n-Fls"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BN4-pa-NG0" userLabel="six" customClass="Indicator" customModule="PasscodeLock" customModuleProvider="target">
+                                        <rect key="frame" x="257" y="6" width="14" height="14"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="BN4-pa-NG0" secondAttribute="height" multiplier="1:1" id="Dji-8E-uhM"/>
                                         </constraints>
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="EvL-fK-aNd" firstAttribute="centerY" secondItem="y48-OI-bV6" secondAttribute="centerY" id="1ef-uu-Qsi"/>
-                                    <constraint firstItem="ty0-rX-vyo" firstAttribute="leading" secondItem="6kS-ba-3rR" secondAttribute="centerX" constant="10" id="2c0-td-z5n"/>
-                                    <constraint firstItem="EvL-fK-aNd" firstAttribute="trailing" secondItem="6kS-ba-3rR" secondAttribute="centerX" constant="-10" id="3zU-Rb-9N6"/>
+                                    <constraint firstItem="ty0-rX-vyo" firstAttribute="leading" secondItem="6kS-ba-3rR" secondAttribute="centerX" constant="-24" id="2c0-td-z5n"/>
+                                    <constraint firstItem="BN4-pa-NG0" firstAttribute="width" secondItem="nQv-Y6-U7g" secondAttribute="width" id="3DE-QC-VY0"/>
+                                    <constraint firstItem="EvL-fK-aNd" firstAttribute="trailing" secondItem="6kS-ba-3rR" secondAttribute="centerX" constant="-44" id="3zU-Rb-9N6"/>
                                     <constraint firstItem="nQv-Y6-U7g" firstAttribute="centerY" secondItem="y48-OI-bV6" secondAttribute="centerY" id="ASt-mt-31F"/>
                                     <constraint firstItem="y48-OI-bV6" firstAttribute="height" secondItem="nQv-Y6-U7g" secondAttribute="height" id="CEL-PE-fiE"/>
+                                    <constraint firstItem="MMc-7j-HZg" firstAttribute="width" secondItem="nQv-Y6-U7g" secondAttribute="width" id="F6Q-7I-otQ"/>
+                                    <constraint firstItem="MMc-7j-HZg" firstAttribute="centerY" secondItem="6kS-ba-3rR" secondAttribute="centerY" id="H2H-J6-Un8"/>
                                     <constraint firstItem="nQv-Y6-U7g" firstAttribute="leading" secondItem="ty0-rX-vyo" secondAttribute="trailing" constant="20" id="Pko-LQ-ixc"/>
                                     <constraint firstItem="EvL-fK-aNd" firstAttribute="leading" secondItem="y48-OI-bV6" secondAttribute="trailing" constant="20" id="T50-Cg-ns8"/>
+                                    <constraint firstItem="BN4-pa-NG0" firstAttribute="leading" secondItem="MMc-7j-HZg" secondAttribute="trailing" constant="20" id="WoY-GF-oHJ"/>
+                                    <constraint firstItem="MMc-7j-HZg" firstAttribute="width" secondItem="MMc-7j-HZg" secondAttribute="height" multiplier="1:1" id="aSL-37-J7e"/>
+                                    <constraint firstItem="BN4-pa-NG0" firstAttribute="centerY" secondItem="6kS-ba-3rR" secondAttribute="centerY" id="bcR-p6-X8N"/>
                                     <constraint firstItem="ty0-rX-vyo" firstAttribute="height" secondItem="nQv-Y6-U7g" secondAttribute="height" id="eP1-yT-ZZS"/>
+                                    <constraint firstItem="BN4-pa-NG0" firstAttribute="width" secondItem="BN4-pa-NG0" secondAttribute="height" multiplier="1:1" id="fgx-1X-1mZ"/>
                                     <constraint firstItem="EvL-fK-aNd" firstAttribute="centerY" secondItem="6kS-ba-3rR" secondAttribute="centerY" id="gVC-l7-2e8"/>
+                                    <constraint firstItem="MMc-7j-HZg" firstAttribute="leading" secondItem="nQv-Y6-U7g" secondAttribute="trailing" constant="20" id="iwn-ld-ekV"/>
                                     <constraint firstItem="ty0-rX-vyo" firstAttribute="centerY" secondItem="y48-OI-bV6" secondAttribute="centerY" id="kne-D8-7YV"/>
                                     <constraint firstItem="EvL-fK-aNd" firstAttribute="height" secondItem="nQv-Y6-U7g" secondAttribute="height" id="qPY-vt-Y5M"/>
                                     <constraint firstItem="nQv-Y6-U7g" firstAttribute="height" secondItem="6kS-ba-3rR" secondAttribute="height" multiplier="1:2" id="rTb-Fm-qBg"/>
@@ -341,6 +363,7 @@
             </view>
             <connections>
                 <outlet property="cancelButton" destination="CIU-9Q-OSg" id="jph-Ge-Qt9"/>
+                <outlet property="deleteButton" destination="fEL-KO-vKM" id="9PC-Ws-K0N"/>
                 <outlet property="messageLabel" destination="BiA-iv-5oK" id="fdo-bX-80h"/>
                 <outlet property="photoImageView" destination="hVx-18-l1J" id="gSk-Zu-Xoe"/>
                 <outlet property="submessageLabel" destination="9Yc-zm-CFr" id="7n3-e4-K6m"/>
@@ -348,6 +371,8 @@
                 <outletCollection property="pinIndicators" destination="EvL-fK-aNd" collectionClass="NSMutableArray" id="BFG-Uv-9tX"/>
                 <outletCollection property="pinIndicators" destination="ty0-rX-vyo" collectionClass="NSMutableArray" id="evP-lU-FiQ"/>
                 <outletCollection property="pinIndicators" destination="nQv-Y6-U7g" collectionClass="NSMutableArray" id="jYB-cR-2wD"/>
+                <outletCollection property="pinIndicators" destination="MMc-7j-HZg" collectionClass="NSMutableArray" id="St6-FK-aWI"/>
+                <outletCollection property="pinIndicators" destination="BN4-pa-NG0" collectionClass="NSMutableArray" id="aan-Kz-8ai"/>
             </connections>
             <point key="canvasLocation" x="-212.5" y="-162.5"/>
         </viewController>

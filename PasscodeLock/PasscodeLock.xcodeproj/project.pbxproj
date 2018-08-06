@@ -122,7 +122,7 @@
 				TargetAttributes = {
 					7C1F833C1EA6276A0017CDD5 = {
 						CreatedOnToolsVersion = 8.3;
-						DevelopmentTeam = 34SL6966R8;
+						DevelopmentTeam = 45WU468FZE;
 						LastSwiftMigration = 0910;
 						ProvisioningStyle = Automatic;
 					};
@@ -305,9 +305,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 34SL6966R8;
+				DEVELOPMENT_TEAM = 45WU468FZE;
 				INFOPLIST_FILE = PasscodeLock/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ryasnoy.PasscodeLock;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -321,9 +321,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 34SL6966R8;
+				DEVELOPMENT_TEAM = 45WU468FZE;
 				INFOPLIST_FILE = PasscodeLock/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ryasnoy.PasscodeLock;
 				PRODUCT_NAME = "$(TARGET_NAME)";

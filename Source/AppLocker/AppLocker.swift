@@ -13,9 +13,9 @@ import LocalAuthentication
 public enum ALConstants {
   static let nibName = "AppLocker"
   static let kPincode = "pincode" // Key for saving pincode to UserDefaults
-  static let kLocalizedReason = "Unlock with sensor" // Your message when sensors must be shown
+  //static let kLocalizedReason = "Unlock with sensor" // Your message when sensors must be shown
   static let duration = 0.3 // Duration of indicator filling
-  static let maxPinLength = 4
+  static let maxPinLength = 6
   
   enum button: Int {
     case delete = 1000
@@ -29,6 +29,12 @@ public struct ALAppearance { // The structure used to display the controller
   public var image: UIImage?
   public var color: UIColor?
   public var isSensorsEnabled: Bool?
+  public var createMessage:String?
+  public var enterMessage:String?
+    public var confirmMessage:String?
+    public var delete:String?
+    public var cancel:String?
+    public var reason:String?
   public init() {}
 }
 
@@ -48,7 +54,8 @@ public class AppLocker: UIViewController {
   @IBOutlet var pinIndicators: [Indicator]!
   
   @IBOutlet weak var cancelButton: Button!
-  
+    @IBOutlet weak var deleteButton: UIButton!
+    
   // MARK: - Pincode
   private let context = LAContext()
   private var pin = "" // Entered pincode
@@ -56,25 +63,67 @@ public class AppLocker: UIViewController {
   private var isFirstCreationStep = true
   private var savedPin: String? {
     get {
-      return UserDefaults.standard.string(forKey: ALConstants.kPincode)
+        guard let savePin = self.getSavedPin else {
+            return UserDefaults.standard.string(forKey: ALConstants.kPincode)
+        }
+        return savePin()
+        //
     }
     set {
-      UserDefaults.standard.set(newValue, forKey: ALConstants.kPincode)
+        guard let savePin = self.setSavedPin else {
+            UserDefaults.standard.set(newValue, forKey: ALConstants.kPincode)
+            return
+        }
+        savePin(newValue)
     }
   }
+    
+    public var getSavedPin: (()->String?)?
+    public var setSavedPin: ((String?)->())?
+    
+    fileprivate var createMessage:String = "Create your passcode"
+    fileprivate var enterMessage:String = "Enter your passcode"
+    fileprivate var confirmMessage:String = "Confirm your pincode"
+    fileprivate var reason:String = "Unlock with sensor"
+    
+    fileprivate var appearance: ALAppearance?
+    {
+        didSet {
+            guard let appearance = appearance else { return }
+            if appearance.createMessage != nil {
+                self.createMessage = appearance.createMessage!
+            }
+            if appearance.enterMessage != nil {
+                self.enterMessage = appearance.enterMessage!
+            }
+            if appearance.confirmMessage != nil {
+                self.confirmMessage = appearance.confirmMessage!
+            }
+            if appearance.delete != nil {
+                self.deleteButton.setTitle(appearance.delete!, for: .normal)
+            }
+            if appearance.cancel != nil {
+                self.cancelButton.setTitle(appearance.cancel!, for: .normal)
+            }
+            if appearance.reason != nil {
+                self.reason = appearance.reason!
+            }
+            
+        }
+    }
   
   fileprivate var mode: ALMode? {
     didSet {
       let mode = self.mode ?? .validate
       switch mode {
       case .create:
-        submessageLabel.text = "Create your passcode" // Your submessage for create mode
+        submessageLabel.text = createMessage // Your submessage for create mode
       case .change:
-        submessageLabel.text = "Enter your passcode" // Your submessage for change mode
+        submessageLabel.text = enterMessage // Your submessage for change mode
       case .deactive:
-        submessageLabel.text = "Enter your passcode" // Your submessage for deactive mode
+        submessageLabel.text = enterMessage // Your submessage for deactive mode
       case .validate:
-        submessageLabel.text = "Enter your passcode" // Your submessage for validate mode
+        submessageLabel.text = enterMessage // Your submessage for validate mode
         cancelButton.isHidden = true
         isFirstCreationStep = false
       }
@@ -122,7 +171,7 @@ public class AppLocker: UIViewController {
       isFirstCreationStep = false
       reservedPin = pin
       clearView()
-      submessageLabel.text = "Confirm your pincode"
+      submessageLabel.text = confirmMessage
     } else {
       confirmPin()
     }
@@ -186,10 +235,14 @@ public class AppLocker: UIViewController {
     
     var err: NSError?
     // Check if the user is able to use the policy we've selected previously
-    guard context.canEvaluatePolicy(policy, error: &err) else {return}
     
+    context.localizedFallbackTitle = ""
+    
+    guard context.canEvaluatePolicy(policy, error: &err) else {return}
+
     // The user is able to use his/her Touch ID / Face ID 👍
-    context.evaluatePolicy(policy, localizedReason: ALConstants.kLocalizedReason, reply: {  success, error in
+    context.evaluatePolicy(policy, localizedReason: self.reason,
+                           reply: {  success, error in
       if success {
         self.dismiss(animated: true, completion: nil)
       }
@@ -220,28 +273,34 @@ extension AppLocker: CAAnimationDelegate {
 
 // MARK: - Present
 public extension AppLocker {
+    class func appLocker(with mode: ALMode, and config: ALAppearance? = nil) -> AppLocker? {
+        guard let locker = Bundle(for: self.classForCoder()).loadNibNamed(ALConstants.nibName, owner: self, options: nil)?.first as? AppLocker else {
+                return nil
+        }
+        locker.appearance = config
+        locker.messageLabel.text = config?.title ?? ""
+        locker.submessageLabel.text = config?.subtitle ?? ""
+        locker.view.backgroundColor = config?.color ?? .black
+        locker.mode = mode
+        
+        if config?.isSensorsEnabled ?? false {
+            locker.checkSensors()
+        }
+        
+        if let image = config?.image {
+            locker.photoImageView.image = image
+        } else {
+            locker.photoImageView.isHidden = true
+        }
+        return locker
+    }
+    
   // Present AppLocker
   class func present(with mode: ALMode, and config: ALAppearance? = nil) {
     guard let root = UIApplication.shared.keyWindow?.rootViewController,
-
-      let locker = Bundle(for: self.classForCoder()).loadNibNamed(ALConstants.nibName, owner: self, options: nil)?.first as? AppLocker else {
+        let locker = AppLocker.appLocker(with: mode, and: config) else {
         return
     }
-    locker.messageLabel.text = config?.title ?? ""
-    locker.submessageLabel.text = config?.subtitle ?? ""
-    locker.view.backgroundColor = config?.color ?? .black
-    locker.mode = mode
-    
-    if config?.isSensorsEnabled ?? false {
-      locker.checkSensors()
-    }
-    
-    if let image = config?.image {
-      locker.photoImageView.image = image
-    } else {
-      locker.photoImageView.isHidden = true
-    }
-    
     root.present(locker, animated: true, completion: nil)
   }
 }
